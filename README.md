@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # TemanBelajar — AI Learning Workspace
 > **“Belajar bersama AI, tetap berpikir sendiri.”**
 
@@ -68,4 +67,3 @@ D:/TEMANBELAJAR/
 ```
 =======
 # TemanBelajar
->>>>>>> d5aac1c4b57dc69137f4cbf9bbc57fa202616f30
