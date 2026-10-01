@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Work Area — TemanBelajar</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Sidebar yang dapat diciutkan + navigasi halus -->
+  <link rel="stylesheet" href="css/sidebar.css">
+  <script src="js/sidebar.js"></script>
+</head>
+
+
+<body>
+
+<div class="ambient-background" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
+</div>
+
+
+<div class="app-viewport">
+
+<main class="desktop-canvas auto-scale">
+
+
+  <!-- HEADER -->
+
+  <header class="top-header">
+
+    <a href="index.html" class="brand-group">
+
+      <div class="brand-logo-wrap">
+        <img src="assets/logo.svg" alt="TemanBelajar Logo">
+      </div>
+
+      <div class="brand-text">
+        <span class="brand-name">
+          TemanBelajar
+        </span>
+
+        <span class="brand-tagline">
+          Belajar bersama AI, tetap berpikir sendiri.
+        </span>
+      </div>
+
+    </a>
+
+
+    <div class="search-container">
+
+      <div class="search-input-wrapper">
+
+        <svg class="search-icon"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2.2">
+
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21"
+                x2="16.65"
+                y2="16.65"></line>
+
+        </svg>
+
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Cari materi, topik, atau pertanyaan...">
+
+      </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+      <button class="icon-btn" type="button">
+
+        <svg width="18"
+             height="18"
+             viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2">
+
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+
+        </svg>
+
+      </button>
+
+
+      <div class="user-profile-pill">
+
+        <div class="avatar-circle">
+          <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+        </div>
+
+        <div class="user-info">
+
+          <span class="user-name">
+            Alya Rahma
+          </span>
+
+          <span class="user-status">
+            <span class="status-dot"></span>
+            Learning
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- WORKSPACE -->
+
+  <div class="workspace-body">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <nav aria-label="Navigasi Utama">
+
+        <ul class="nav-menu-list">
+
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              <span>⌂</span>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#my-learning" class="nav-link">
+              <span>▣</span>
+              <span>My Learning</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">
+              <span>✦</span>
+              <span>AI Assistant</span>
+            </a>
+          </li>
+
+          <!-- PROJECTS ACTIVE -->
+
+          <li class="nav-item active">
+
+            <a href="projects.html" class="nav-link">
+
+              <svg class="nav-icon"
+                   viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor">
+
+                <rect x="3" y="4"
+                      width="18"
+                      height="18"
+                      rx="2"></rect>
+
+                <line x1="16" y1="2"
+                      x2="16" y2="6"></line>
+
+                <line x1="8" y1="2"
+                      x2="8" y2="6"></line>
+
+                <line x1="3" y1="10"
+                      x2="21" y2="10"></line>
+
+              </svg>
+
+              <span>Projects</span>
+
+            </a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="#discussion" class="nav-link">
+              <span>◌</span>
+              <span>Discussion</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#reflection" class="nav-link">
+              <span>□</span>
+              <span>Reflection</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <a href="#help" class="help-link">
+
+          <svg viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2">
+
+            <circle cx="12" cy="12" r="10"></circle>
+
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+
+            <line x1="12" y1="17"
+                  x2="12.01"
+                  y2="17"></line>
+
+          </svg>
+
+          <span>Help & Resources</span>
+
+        </a>
+
+
+        <div class="student-card">
+
+          <div class="student-card-left">
+
+            <div class="avatar-circle">
+              <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+            </div>
+
+            <div class="student-meta">
+
+              <span class="student-name">
+                Alya Rahma
+              </span>
+
+              <span class="student-major">
+                IT Student · UGM
+              </span>
+
+            </div>
+
+          </div>
+
+          <button class="settings-btn" type="button">
+            ⚙
+          </button>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <section class="main-workspace">
+
+      <div class="project-page-main">
+
+
+        <div class="project-page-header">
+
+          <div class="project-page-title-wrap">
+
+            <h1 class="project-page-title">
+              Work Area
+            </h1>
+
+            <p class="project-page-subtitle">
+              Kembangkan solusi berdasarkan pemahaman dan proses yang sudah kamu lakukan.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PROJECT STATUS -->
+
+        <div class="work-project-bar">
+
+          <div>
+
+            <div class="work-project-name">
+              Website Profil Sederhana
+            </div>
+
+            <div class="work-project-meta">
+
+              <span>Web Development</span>
+
+              <span>·</span>
+
+              <span>Beginner</span>
+
+              <span class="status-pill">
+                In Progress
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="step-progress">
+
+            <span>
+              Step 2 of 4
+            </span>
+
+            <div class="step-progress-line"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- WORK LAYOUT -->
+
+        <div class="work-layout">
+
+
+          <!-- MAIN WORK PANEL -->
+
+          <section class="work-panel">
+
+
+            <div class="work-panel-header">
+
+              <div>
+
+                <div class="work-panel-title">
+                  Your Work
+                </div>
+
+                <div class="work-panel-subtitle">
+                  Kerjakan solusi dengan caramu sendiri.
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- TABS -->
+
+            <div class="editor-tabs">
+
+              <button
+                class="editor-tab active"
+                onclick="switchTab('code', this)">
+                Code
+              </button>
+
+              <button
+                class="editor-tab"
+                onclick="switchTab('preview', this)">
+                Preview
+              </button>
+
+              <button
+                class="editor-tab"
+                onclick="switchTab('notes', this)">
+                Notes
+              </button>
+
+            </div>
+
+
+            <div class="editor-content">
+
+
+              <!-- CODE -->
+
+              <div
+                class="editor-pane active"
+                id="code">
+
+<textarea class="code-editor">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Website Organisasi</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Nama Organisasi</h1>
+    <p>Informasi dan kegiatan organisasi</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Tentang Kami</h2>
+      <p>
+        Jelaskan organisasi dan tujuan utamanya.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>
+</textarea>
+
+              </div>
+
+
+              <!-- PREVIEW -->
+
+              <div
+                class="editor-pane"
+                id="preview">
+
+                <div class="preview-frame">
+
+                  <div class="preview-demo">
+
+                    <h3>
+                      Nama Organisasi
+                    </h3>
+
+                    <p>
+                      Informasi dan kegiatan organisasi.
+                      Gunakan area ini untuk melihat
+                      gambaran hasil pekerjaanmu.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- NOTES -->
+
+              <div
+                class="editor-pane"
+                id="notes">
+
+<textarea
+  class="notes-area"
+  placeholder="Tuliskan alasan atau keputusan yang kamu buat selama mengembangkan solusi..."></textarea>
+
+              </div>
+
+            </div>
+
+
+            <!-- OWNERSHIP -->
+
+            <div class="work-owner">
+
+              <strong>
+                Your work
+              </strong>
+
+              <span>
+                Hasil yang kamu buat akan menjadi dasar
+                untuk mendapatkan feedback.
+              </span>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="work-actions">
+
+              <button
+                class="work-action-btn"
+                onclick="saveDraft()">
+                Save Draft
+              </button>
+
+              <button
+                class="work-action-btn"
+                onclick="requestFeedback()">
+                Request Feedback
+              </button>
+
+              <button
+                class="work-action-btn primary">
+                Continue
+              </button>
+
+            </div>
+
+
+          </section>
+
+
+          <!-- RIGHT WORK CONTEXT -->
+
+          <aside class="work-side">
+
+
+            <!-- GOAL -->
+
+            <div class="work-context-card">
+
+              <h3 class="work-context-title">
+                Project Goal
+              </h3>
+
+              <p class="work-context-text">
+                Membuat rancangan website yang mudah dipahami
+                dan memiliki struktur informasi yang jelas.
+              </p>
+
+            </div>
+
+
+            <!-- CURRENT STEP -->
+
+            <div class="work-context-card">
+
+              <h3 class="work-context-title">
+                Current Step
+              </h3>
+
+              <p class="work-context-text">
+                Develop your work
+              </p>
+
+              <p class="work-context-text">
+                Kembangkan solusi berdasarkan pemahaman
+                dan keputusanmu.
+              </p>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="work-context-card ai-context-card">
+
+              <div class="ai-mini">
+
+                <img
+                  src="assets/logo.svg"
+                  alt="TemanBelajar AI">
+
+                <div>
+
+                  <div class="ai-mini-name">
+                    TemanBelajar AI
+                  </div>
+
+                  <div class="ai-mini-status">
+                    Ready to help
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="ai-action-list">
+
+                <button>
+                  Explain
+                </button>
+
+                <button>
+                  Give a hint
+                </button>
+
+                <button>
+                  Review my work
+                </button>
+
+                <button>
+                  Ask a question
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- FEEDBACK -->
+
+            <div class="work-context-card feedback-card">
+
+              <h3 class="work-context-title">
+                Feedback
+              </h3>
+
+              <div class="feedback-item">
+
+                <span class="feedback-label">
+                  What's working
+                </span>
+
+                <p>
+                  Struktur halaman sudah memisahkan
+                  informasi utama dan informasi pendukung.
+                </p>
+
+              </div>
+
+
+              <div class="feedback-item">
+
+                <span class="feedback-label">
+                  Consider improving
+                </span>
+
+                <p>
+                  Pertimbangkan kembali urutan informasi
+                  agar tujuan utama halaman lebih mudah ditemukan.
+                </p>
+
+              </div>
+
+
+              <div class="feedback-item">
+
+                <span class="feedback-label">
+                  Guiding question
+                </span>
+
+                <p>
+                  Informasi apa yang paling penting bagi
+                  pengguna ketika pertama kali membuka halaman?
+                </p>
+
+              </div>
+
+            </div>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RIGHT OUTER CONTEXT -->
+
+    <aside class="right-context-panel">
+
+      <div class="context-card">
+
+        <div class="context-card-header">
+
+          <div class="card-header-icon">
+            🎯
+          </div>
+
+          <h3 class="context-card-title">
+            Learning Progress
+          </h3>
+
+        </div>
+
+        <p class="work-context-text">
+          Project sedang berada pada tahap pengembangan solusi.
+        </p>
+
+        <div class="step-progress">
+          <span>2 / 4</span>
+
+          <div class="step-progress-line"></div>
+        </div>
+
+      </div>
+
+
+      <div class="context-card">
+
+        <div class="context-card-header">
+
+          <div class="card-header-icon">
+            📝
+          </div>
+
+          <h3 class="context-card-title">
+            Reflection
+          </h3>
+
+        </div>
+
+        <p class="work-context-text">
+          Setelah menyelesaikan pekerjaan, tinjau kembali
+          alasan dan proses yang kamu gunakan.
+        </p>
+
+      </div>
+
+    </aside>
+
+
+  </div>
+
+</main>
+
+</div>
+
+
+<script>
+
+function switchTab(tabName, button) {
+
+  document
+    .querySelectorAll(".editor-pane")
+    .forEach(pane => {
+      pane.classList.remove("active");
+    });
+
+  document
+    .querySelectorAll(".editor-tab")
+    .forEach(tab => {
+      tab.classList.remove("active");
+    });
+
+  document
+    .getElementById(tabName)
+    .classList.add("active");
+
+  button.classList.add("active");
+}
+
+
+function saveDraft() {
+
+  const button = event.currentTarget;
+
+  const original = button.textContent;
+
+  button.textContent = "Saved";
+
+  setTimeout(() => {
+    button.textContent = original;
+  }, 1400);
+
+}
+
+
+function requestFeedback() {
+
+  alert(
+    "Feedback tersedia untuk membantu kamu meninjau dan memperbaiki pekerjaan."
+  );
+
+}
+
+</script>
+
+  <script src="js/discussion-nav.js"></script>
+  <script src="js/my-learning-nav.js"></script>
+  <script src="js/reflection-nav.js"></script>
+  <script src="js/home-nav.js"></script>
+</body>
+
+</html>

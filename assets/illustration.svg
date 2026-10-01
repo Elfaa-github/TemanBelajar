@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none">
+  <defs>
+    <!-- Book Gradients -->
+    <linearGradient id="bookGrad1" x1="20" y1="90" x2="180" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F8BFF" />
+      <stop offset="100%" stop-color="#2D58CF" />
+    </linearGradient>
+    <linearGradient id="bookGrad2" x1="40" y1="70" x2="160" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6EE1FF" />
+      <stop offset="100%" stop-color="#3B92FF" />
+    </linearGradient>
+    <linearGradient id="bookGrad3" x1="60" y1="50" x2="140" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7B61FF" />
+      <stop offset="100%" stop-color="#4F8BFF" />
+    </linearGradient>
+    <linearGradient id="sproutGrad" x1="100" y1="20" x2="100" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#48DF98" />
+      <stop offset="100%" stop-color="#1DB974" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ambient light glow behind sprout -->
+  <circle cx="102" cy="40" r="32" fill="#6EE1FF" opacity="0.25" filter="url(#softGlow)" />
+
+  <!-- Shadow below books -->
+  <ellipse cx="100" cy="142" rx="72" ry="12" fill="#2E3A59" opacity="0.12" />
+
+  <!-- BOTTOM BOOK -->
+  <g>
+    <!-- Pages block -->
+    <path d="M42 128 L158 128 L156 138 L44 138 Z" fill="#F4F8FD" />
+    <path d="M42 128 L40 138 L156 138 L158 128 Z" fill="#E2EDFC" />
+    <!-- Cover -->
+    <rect x="36" y="124" width="128" height="7" rx="3.5" fill="url(#bookGrad1)" />
+    <rect x="36" y="137" width="128" height="6" rx="3" fill="#2448B5" />
+    <path d="M36 124 Q 30 132 36 142" stroke="#2448B5" stroke-width="4" stroke-linecap="round" fill="none" />
+  </g>
+
+  <!-- MIDDLE BOOK (Offset angle slightly) -->
+  <g transform="rotate(-3 98 114)">
+    <rect x="46" y="108" width="112" height="6" rx="3" fill="#F8FAFC" />
+    <rect x="44" y="104" width="116" height="6" rx="3" fill="url(#bookGrad2)" />
+    <rect x="44" y="114" width="116" height="5" rx="2.5" fill="#2B7DE8" />
+    <!-- Ribbon Bookmark -->
+    <path d="M130 110 L136 128 L142 122 L148 128 L144 110 Z" fill="#7B61FF" opacity="0.9" />
+  </g>
+
+  <!-- TOP OPEN BOOK -->
+  <g transform="translate(15, -4)">
+    <!-- Open Book Pages left -->
+    <path d="M50 86 C 65 83 80 84 88 88 L 88 96 C 80 92 65 91 50 94 Z" fill="#FFFFFF" />
+    <!-- Open Book Pages right -->
+    <path d="M126 86 C 111 83 96 84 88 88 L 88 96 C 96 92 111 91 126 94 Z" fill="#EDF4FD" />
+    <!-- Cover Spine -->
+    <path d="M48 93 C 65 90 82 91 88 97 C 94 91 111 90 128 93" stroke="url(#bookGrad3)" stroke-width="3" fill="none" />
+  </g>
+
+  <!-- SPROUT / PLANT GROWING FROM TOP BOOK -->
+  <g>
+    <!-- Stem -->
+    <path d="M103 86 C 103 70 102 54 103 40" stroke="url(#sproutGrad)" stroke-width="4" stroke-linecap="round" />
+    
+    <!-- Left Leaf -->
+    <path d="M103 54 C 88 52 76 38 88 34 C 99 30 102 46 103 54 Z" fill="url(#sproutGrad)" />
+    <path d="M92 41 C 97 45 101 50 103 54" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
+
+    <!-- Right Leaf -->
+    <path d="M103 42 C 118 36 128 44 122 56 C 115 64 106 50 103 42 Z" fill="url(#sproutGrad)" />
+    <path d="M116 48 C 110 50 106 47 103 42" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
+
+    <!-- Tiny center fresh bud -->
+    <path d="M103 40 C 100 32 103 26 103 26 C 103 26 106 32 103 40 Z" fill="#75F4B3" />
+  </g>
+
+  <!-- SPARKLES / PARTICLES -->
+  <g opacity="0.85">
+    <!-- Star 1 -->
+    <path d="M136 28 L138 34 L144 36 L138 38 L136 44 L134 38 L128 36 L134 34 Z" fill="#6EE1FF" filter="url(#softGlow)" />
+    <circle cx="136" cy="36" r="1.5" fill="#FFFFFF" />
+
+    <!-- Star 2 -->
+    <path d="M68 46 L69.5 50 L74 51.5 L69.5 53 L68 57 L66.5 53 L62 51.5 L66.5 50 Z" fill="#4F8BFF" />
+    
+    <!-- Tiny spark dots -->
+    <circle cx="82" cy="24" r="2" fill="#7B61FF" opacity="0.7" />
+    <circle cx="148" cy="62" r="1.8" fill="#6EE1FF" opacity="0.8" />
+    <circle cx="62" cy="74" r="1.5" fill="#4F8BFF" opacity="0.6" />
+  </g>
+</svg>

@@ -1,0 +1,160 @@
+/* ==========================================================================
+   REFLECTION PAGE — additive stylesheet
+   Hanya dipakai oleh reflection.html. Memakai token & komponen dari style.css.
+   Semua class diawali "rf-" agar tidak bentrok dengan halaman lain.
+   ========================================================================== */
+
+.rf-body {
+  grid-template-columns: 236px minmax(0, 1fr);
+}
+
+.rf-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2px 4px 8px 2px;
+}
+
+.rf-main::-webkit-scrollbar { width: 4px; }
+.rf-main::-webkit-scrollbar-thumb {
+  background: rgba(79, 139, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Satu panel kaca utama (tanpa nested card) */
+.rf-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 24px 22px;
+  min-width: 0;
+}
+
+.rf-context {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(79, 139, 255, 0.12);
+}
+
+.rf-context-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rf-context-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-deep-navy);
+  letter-spacing: -0.2px;
+}
+
+.rf-context-sub {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.rf-status {
+  flex: 0 0 auto;
+  font-size: 11px;
+}
+
+.rf-status-saved {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Grid 2 × 2 untuk empat pertanyaan refleksi */
+.rf-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+
+.rf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.rf-field-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-electric-blue);
+}
+
+.rf-field-violet .rf-field-label { color: var(--color-soft-violet); }
+
+.rf-question {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-deep-navy);
+  cursor: pointer;
+}
+
+.rf-field .reflection-textarea {
+  min-height: 112px;
+  font-size: 13px;
+}
+
+/* Footer: status simpan + tombol */
+.rf-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 40px;
+}
+
+.rf-feedback {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.rf-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.rf-hint-warning { color: #D97706; }
+
+.rf-footer .reflection-saved-banner { width: fit-content; }
+
+/* Tombol memakai gaya .btn-save-reflection yang sudah ada, tetapi tidak selebar penuh */
+.rf-save-btn {
+  width: auto;
+  flex: 0 0 auto;
+  padding: 10px 20px;
+  font-size: 13.5px;
+}
+
+@media (max-width: 1100px) {
+  .rf-body { grid-template-columns: 210px minmax(0, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .rf-fields { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 820px) {
+  .rf-body { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .rf-context { flex-direction: column; align-items: flex-start; }
+}

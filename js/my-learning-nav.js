@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TemanBelajar — Discussion & Feedback</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Font utama: Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet yang sama dengan halaman utama -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="ambient-background" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+
+  <div class="app-viewport">
+    <main class="desktop-canvas auto-scale discussion-canvas" id="desktopCanvas" style="transition: none;">
+
+      <!-- Header yang konsisten dengan index.html -->
+      <header class="top-header">
+        <a href="index.html#home" class="brand-group" aria-label="TemanBelajar Home">
+          <div class="brand-logo-wrap">
+            <img src="assets/logo.svg" alt="TemanBelajar Logo">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">TemanBelajar</span>
+            <span class="brand-tagline">Belajar bersama AI, tetap berpikir sendiri.</span>
+          </div>
+        </a>
+
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="search-input" placeholder="Cari materi, topik, atau pertanyaan..." aria-label="Cari materi">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" title="Notifikasi" aria-label="Notifikasi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <div class="user-profile-pill" title="Profil Mahasiswa">
+            <div class="avatar-circle">
+              <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+            </div>
+            <div class="user-info">
+              <span class="user-name">Alya Rahma</span>
+              <span class="user-status"><span class="status-dot"></span>Online</span>
+            </div>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace-body discussion-body">
+
+        <!-- Sidebar: struktur dan visual dipertahankan -->
+        <aside class="sidebar">
+          <nav aria-label="Navigasi Utama">
+            <ul class="nav-menu-list">
+              <li class="nav-item">
+                <a href="index.html#home" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>Home</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#my-learning" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                  <span>My Learning</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#ai-assistant" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span>AI Assistant</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#projects" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Projects</span>
+                </a>
+              </li>
+
+              <li class="nav-item active">
+                <a href="discussion.html" class="nav-link" aria-current="page">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>Discussion</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#reflection" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Reflection</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-bottom">
+            <a href="index.html#help" class="help-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Help &amp; Resources</span>
+            </a>
+
+            <div class="student-card">
+              <div class="student-card-left">
+                <div class="avatar-circle">
+                  <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+                </div>
+                <div class="student-meta">
+                  <span class="student-name">Alya Rahma</span>
+                  <span class="student-major">IT Student · UGM</span>
+                </div>
+              </div>
+
+              <button class="settings-btn" type="button" title="Pengaturan" aria-label="Pengaturan">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-.33-1.82V15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Discussion & Feedback -->
+        <section class="discussion-main" aria-labelledby="discussionPageTitle">
+          <header class="discussion-header">
+            <div class="discussion-title-group">
+              <div class="discussion-header-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h1 class="discussion-title" id="discussionPageTitle">Discussion &amp; Feedback</h1>
+                <p class="discussion-subtitle">Ruang untuk membahas pekerjaan, menerima masukan, dan memperbaiki pemahaman.</p>
+              </div>
+            </div>
+            <div class="discussion-status">
+              <span class="status-dot"></span>
+              <span>Project discussion</span>
+            </div>
+          </header>
+
+          <div class="discussion-layout">
+            <!-- Thread utama -->
+            <section class="discussion-panel" aria-labelledby="threadTitle">
+              <div class="discussion-panel-header">
+                <div class="discussion-panel-heading">
+                  <h2 class="discussion-panel-title" id="threadTitle">Diskusi Proyek</h2>
+                  <p class="discussion-panel-description">Bahas proses dan keputusan yang kamu ambil saat mengerjakan proyek.</p>
+                </div>
+              </div>
+
+              <div class="project-context">
+                <span class="context-label">Project Context</span>
+                <h2>Website Profil Sederhana</h2>
+                <p>Bangun halaman profil sederhana dengan struktur HTML yang jelas, kemudian jelaskan alasan di balik struktur yang kamu gunakan.</p>
+
+                <div class="student-work-card">
+                  <strong>Student Work</strong>
+                  <p>Saya menggunakan elemen <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, dan <code>&lt;footer&gt;</code> agar bagian halaman memiliki struktur yang lebih jelas.</p>
+                </div>
+              </div>
+
+              <div class="discussion-thread" id="discussionThread">
+                <article class="comment-item">
+                  <div class="comment-avatar">
+                    <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-meta">
+                      <span class="comment-author">Alya Rahma</span>
+                      <span class="comment-time">10:32</span>
+                    </div>
+                    <p class="comment-text">Saya masih ingin memastikan apakah penggunaan <code>&lt;section&gt;</code> lebih tepat daripada beberapa <code>&lt;div&gt;</code> untuk bagian yang memiliki topik sendiri.</p>
+                    <div class="comment-actions">
+                      <button class="text-action reply-button" type="button">Balas</button>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="comment-item">
+                  <div class="comment-avatar">
+                    <img src="assets/alya_avatar.svg" alt="Raka">
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-meta">
+                      <span class="comment-author">Raka</span>
+                      <span class="comment-time">10:41</span>
+                      <span class="role-badge">Peer</span>
+                    </div>
+                    <p class="comment-text">Menurut saya, <code>&lt;section&gt;</code> bisa digunakan ketika bagian tersebut memiliki topik yang jelas. Kalau hanya untuk kebutuhan layout, <code>&lt;div&gt;</code> lebih sesuai.</p>
+                    <div class="comment-actions">
+                      <button class="text-action reply-button" type="button">Balas</button>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="comment-item">
+                  <div class="comment-avatar">
+                    <img src="assets/alya_avatar.svg" alt="Dosen">
+                  </div>
+                  <div class="comment-content">
+                    <div class="comment-meta">
+                      <span class="comment-author">Dosen</span>
+                      <span class="comment-time">11:02</span>
+                      <span class="role-badge lecturer">Lecturer</span>
+                    </div>
+                    <p class="comment-text">Pertimbangkan tujuan setiap elemen sebelum memilih tag. Coba jelaskan bagian mana yang memiliki makna sebagai satu kelompok konten.</p>
+                    <div class="guiding-question">Pertanyaan pemantik: jika judul bagian tersebut dihilangkan, apakah kelompok kontennya masih dapat dikenali dengan jelas?</div>
+                  </div>
+                </article>
+              </div>
+
+              <form class="feedback-composer" id="discussionForm">
+                <label class="composer-label" for="discussionInput">Tambahkan pertanyaan atau masukan</label>
+                <textarea class="feedback-textarea" id="discussionInput" maxlength="500" placeholder="Tulis pertanyaan, tanggapan, atau saran berdasarkan pekerjaanmu..."></textarea>
+                <div class="composer-footer">
+                  <span class="composer-hint" id="composerHint">Gunakan ruang ini untuk memperjelas proses dan alasanmu.</span>
+                  <button class="discussion-submit" id="discussionSubmit" type="submit" disabled>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    Kirim
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <!-- Panel umpan balik -->
+            <aside class="discussion-panel" aria-labelledby="feedbackTitle">
+              <div class="discussion-panel-header">
+                <div class="discussion-panel-heading">
+                  <h2 class="discussion-panel-title" id="feedbackTitle">Feedback</h2>
+                  <p class="discussion-panel-description">Masukan yang dapat digunakan untuk meninjau dan memperbaiki pekerjaan.</p>
+                </div>
+              </div>
+
+              <div class="feedback-list">
+                <div class="lecturer-feedback">
+                  <div class="feedback-heading">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                      <path d="M20 7h-9"></path>
+                      <path d="M20 12h-9"></path>
+                      <path d="M20 17h-9"></path>
+                      <path d="M4 7h.01"></path>
+                      <path d="M4 12h.01"></path>
+                      <path d="M4 17h.01"></path>
+                    </svg>
+                    <span>Lecturer Feedback</span>
+                  </div>
+                  <p>Struktur halaman sudah mengarah pada penggunaan elemen semantik. Perjelas alasan pemilihan setiap elemen pada dokumentasi proyek.</p>
+                  <div class="guiding-question">Coba hubungkan keputusan struktur HTML dengan tujuan informasi pada setiap bagian halaman.</div>
+                </div>
+
+                <div class="feedback-note">
+                  <strong>Peer Feedback</strong>
+                  <p>Tambahkan penjelasan singkat tentang kapan <code>&lt;section&gt;</code> digunakan dan kapan <code>&lt;div&gt;</code> lebih sesuai.</p>
+                </div>
+
+                <div class="feedback-note">
+                  <strong>Next Review</strong>
+                  <p>Periksa kembali struktur HTML, lalu revisi bagian yang masih belum memiliki alasan penggunaan elemen yang jelas.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </div>
+
+      <aside class="canvas-view-controls" aria-label="Pengaturan Tampilan Layar">
+        <span id="canvasSizeLabel">Desktop Canvas 1440 × 1024</span>
+        <button type="button" class="view-mode-pill" id="viewModeToggleBtn">View: 1440 × 1024 Canvas</button>
+      </aside>
+    </main>
+  </div>
+
+  <script src="js/discussion.js"></script>
+  <script>
+    (function () {
+      const canvas = document.getElementById('desktopCanvas');
+      const toggle = document.getElementById('viewModeToggleBtn');
+      const label = document.getElementById('canvasSizeLabel');
+
+      if (!canvas || !toggle) return;
+
+      let fluidDesktop = false;
+
+      function applyCanvasMode() {
+        if (fluidDesktop) {
+          canvas.classList.add('fluid-desktop');
+          canvas.style.transform = 'none';
+          toggle.textContent = 'View: Fluid Desktop';
+          if (label) label.textContent = 'Fluid Desktop';
+          return;
+        }
+
+        canvas.classList.remove('fluid-desktop');
+        toggle.textContent = 'View: 1440 × 1024 Canvas';
+        if (label) label.textContent = 'Desktop Canvas 1440 × 1024';
+
+        const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 1024);
+        canvas.style.transform = `scale(${Math.min(1, scale)})`;
+      }
+
+      toggle.addEventListener('click', function () {
+        fluidDesktop = !fluidDesktop;
+        applyCanvasMode();
+      });
+
+      window.addEventListener('resize', applyCanvasMode);
+      applyCanvasMode();
+    })();
+  </script>
+  <script src="js/my-learning-nav.js"></script>
+  <script src="js/reflection-nav.js"></script>
+</body>
+
+</html>

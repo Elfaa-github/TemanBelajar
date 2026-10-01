@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TemanBelajar — Reflection</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Font utama: Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet yang sama dengan halaman utama -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Tambahan khusus halaman Reflection -->
+  <link rel="stylesheet" href="css/reflection.css">
+  <!-- Sidebar yang dapat diciutkan + navigasi halus -->
+  <link rel="stylesheet" href="css/sidebar.css">
+  <script src="js/sidebar.js"></script>
+</head>
+
+<body>
+  <div class="ambient-background" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+
+  <div class="app-viewport">
+    <main class="desktop-canvas auto-scale rf-canvas" id="desktopCanvas" style="transition: none;">
+
+      <!-- Header yang konsisten dengan index.html -->
+      <header class="top-header">
+        <a href="index.html#home" class="brand-group" aria-label="TemanBelajar Home">
+          <div class="brand-logo-wrap">
+            <img src="assets/logo.svg" alt="TemanBelajar Logo">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">TemanBelajar</span>
+            <span class="brand-tagline">Belajar bersama AI, tetap berpikir sendiri.</span>
+          </div>
+        </a>
+
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="search-input" placeholder="Cari materi, topik, atau pertanyaan..." aria-label="Cari materi">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" title="Notifikasi" aria-label="Notifikasi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <div class="user-profile-pill" title="Profil Mahasiswa">
+            <div class="avatar-circle">
+              <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+            </div>
+            <div class="user-info">
+              <span class="user-name">Alya Rahma</span>
+              <span class="user-status"><span class="status-dot"></span>Online</span>
+            </div>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace-body rf-body">
+
+        <!-- Sidebar: struktur dan visual dipertahankan -->
+        <aside class="sidebar">
+          <nav aria-label="Navigasi Utama">
+            <ul class="nav-menu-list">
+              <li class="nav-item">
+                <a href="index.html#home" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>Home</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="my-learning.html" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                  <span>My Learning</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#ai-assistant" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span>AI Assistant</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="index.html#projects" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Projects</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="discussion.html" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>Discussion</span>
+                </a>
+              </li>
+
+              <li class="nav-item active">
+                <a href="reflection.html" class="nav-link" aria-current="page">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Reflection</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-bottom">
+            <a href="index.html#help" class="help-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Help &amp; Resources</span>
+            </a>
+
+            <div class="student-card">
+              <div class="student-card-left">
+                <div class="avatar-circle">
+                  <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+                </div>
+                <div class="student-meta">
+                  <span class="student-name">Alya Rahma</span>
+                  <span class="student-major">IT Student · UGM</span>
+                </div>
+              </div>
+
+              <button class="settings-btn" type="button" title="Pengaturan" aria-label="Pengaturan">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-.33-1.82V15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+                        <!-- Reflection -->
+        <section class="rf-main" aria-labelledby="reflectionTitle">
+          <div class="workspace-header">
+            <div class="header-spark-icon project-header-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <div class="workspace-titles">
+              <h1 class="workspace-main-title" id="reflectionTitle">Reflection</h1>
+              <p class="workspace-subheading">Tinjau kembali pemahaman dan proses belajarmu setelah menyelesaikan aktivitas.</p>
+            </div>
+          </div>
+
+          <form class="rf-panel glass-panel" id="reflectionForm" novalidate>
+            <div class="rf-context">
+              <div class="rf-context-text">
+                <span class="eyebrow-label">Learning Reflection</span>
+                <h2 class="rf-context-title">Normalisasi Database 2NF</h2>
+                <span class="rf-context-sub">Basis Data · Jelaskan 2NF dengan bahasamu sendiri</span>
+              </div>
+              <span class="status-pill status-developing rf-status" id="reflectionStatusPill">Belum disimpan</span>
+            </div>
+
+            <div class="rf-fields">
+              <div class="rf-field">
+                <span class="rf-field-label">PEMAHAMAN</span>
+                <label class="rf-question" for="reflection-understanding">Apa yang sudah saya pahami dari aktivitas ini?</label>
+                <textarea class="reflection-textarea" id="reflection-understanding" name="understanding" maxlength="600" placeholder="Tulis dengan bahasamu sendiri..."></textarea>
+              </div>
+
+              <div class="rf-field">
+                <span class="rf-field-label">PROSES BELAJAR</span>
+                <label class="rf-question" for="reflection-process">Bagian mana yang paling membantu atau masih sulit?</label>
+                <textarea class="reflection-textarea" id="reflection-process" name="process" maxlength="600" placeholder="Ceritakan bagian yang terasa mudah atau menantang..."></textarea>
+              </div>
+
+              <div class="rf-field rf-field-violet">
+                <span class="rf-field-label">PENGGUNAAN AI</span>
+                <label class="rf-question" for="reflection-ai">Bagaimana AI membantu proses belajar saya?</label>
+                <textarea class="reflection-textarea" id="reflection-ai" name="ai" maxlength="600" placeholder="Jelaskan peran AI, dan bagian mana yang tetap kamu pikirkan sendiri..."></textarea>
+              </div>
+
+              <div class="rf-field">
+                <span class="rf-field-label">NEXT STEP</span>
+                <label class="rf-question" for="reflection-next">Apa yang perlu saya pelajari atau lakukan selanjutnya?</label>
+                <textarea class="reflection-textarea" id="reflection-next" name="next" maxlength="600" placeholder="Tentukan langkah kecil berikutnya..."></textarea>
+              </div>
+            </div>
+
+            <div class="rf-footer">
+              <div class="rf-feedback" id="reflectionFeedback" aria-live="polite"></div>
+              <button class="btn-save-reflection rf-save-btn" id="reflectionSaveBtn" type="submit">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span>Save Reflection</span>
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <aside class="canvas-view-controls" aria-label="Pengaturan Tampilan Layar">
+        <span id="canvasSizeLabel">Desktop Canvas 1440 × 1024</span>
+        <button type="button" class="view-mode-pill" id="viewModeToggleBtn">View: 1440 × 1024 Canvas</button>
+      </aside>
+    </main>
+  </div>
+
+  <script src="js/reflection.js"></script>
+  <script>
+    (function () {
+      const canvas = document.getElementById('desktopCanvas');
+      const toggle = document.getElementById('viewModeToggleBtn');
+      const label = document.getElementById('canvasSizeLabel');
+
+      if (!canvas || !toggle) return;
+
+      let fluidDesktop = false;
+
+      function applyCanvasMode() {
+        if (fluidDesktop) {
+          canvas.classList.add('fluid-desktop');
+          canvas.style.transform = 'none';
+          toggle.textContent = 'View: Fluid Desktop';
+          if (label) label.textContent = 'Fluid Desktop';
+          return;
+        }
+
+        canvas.classList.remove('fluid-desktop');
+        toggle.textContent = 'View: 1440 × 1024 Canvas';
+        if (label) label.textContent = 'Desktop Canvas 1440 × 1024';
+
+        const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 1024);
+        canvas.style.transform = `scale(${Math.min(1, scale)})`;
+      }
+
+      toggle.addEventListener('click', function () {
+        fluidDesktop = !fluidDesktop;
+        applyCanvasMode();
+      });
+
+      window.addEventListener('resize', applyCanvasMode);
+      applyCanvasMode();
+    })();
+  </script>
+  <script src="js/home-nav.js"></script>
+</body>
+
+</html>

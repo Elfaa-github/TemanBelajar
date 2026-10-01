@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="tbLogoGrad1" x1="4" y1="8" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F8BFF" />
+      <stop offset="100%" stop-color="#6EE1FF" />
+    </linearGradient>
+    <linearGradient id="tbLogoGrad2" x1="12" y1="12" x2="36" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7B61FF" />
+      <stop offset="100%" stop-color="#4F8BFF" />
+    </linearGradient>
+    <filter id="tbGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Subtle back glow -->
+  <circle cx="24" cy="24" r="18" fill="url(#tbLogoGrad1)" opacity="0.18" filter="url(#tbGlow)" />
+  
+  <!-- Open Book Base Curve (Left Wing) -->
+  <path d="M7 34C13 32 19 32 23 35.5V15.5C19 12 13 12 7 14V34Z" 
+        fill="url(#tbLogoGrad1)" />
+        
+  <!-- Open Book Base Curve (Right Wing) -->
+  <path d="M41 34C35 32 29 32 25 35.5V15.5C29 12 35 12 41 14V34Z" 
+        fill="url(#tbLogoGrad1)" />
+        
+  <!-- Modern Geometric Book Spine / Ribbon Arch -->
+  <path d="M12 31.5C16.5 29.5 21 30 24 33C27 30 31.5 29.5 36 31.5V13.5C31.5 11.5 27 12 24 15C21 12 16.5 11.5 12 13.5V31.5Z" 
+        fill="white" opacity="0.95" />
+        
+  <!-- Glowing Center Flame / Spark of Knowledge (Star / Diamond Spark) -->
+  <path d="M24 6L26.2 13.8L34 16L26.2 18.2L24 26L21.8 18.2L14 16L21.8 13.8L24 6Z" 
+        fill="url(#tbLogoGrad1)" filter="url(#tbGlow)" />
+        
+  <!-- Inner White Spark Accent -->
+  <path d="M24 10L25.3 14.7L30 16L25.3 17.3L24 22L22.7 17.3L18 16L22.7 14.7L24 10Z" 
+        fill="#FFFFFF" />
+        
+  <!-- Soft Light Accent at Book Fold -->
+  <ellipse cx="24" cy="33" rx="2" ry="1.2" fill="#4F8BFF" opacity="0.6" />
+</svg>

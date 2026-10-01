@@ -1,0 +1,273 @@
+/* ==========================================================================
+   SIDEBAR COLLAPSE + SMOOTH NAVIGATION — additive stylesheet
+   Dimuat SETELAH style.css (dan css halaman lain). Tidak mengubah aturan lama;
+   semua class baru diawali "tb-".
+
+   1) Sidebar dapat diciutkan menjadi "rail" ikon (label teks disembunyikan)
+   2) Kolom konten di sebelah kanan otomatis melebar mengikuti sidebar
+   3) Transisi perpindahan halaman yang halus (header & sidebar tetap diam)
+   ========================================================================== */
+
+:root {
+  --tb-sidebar-w: 236px;       /* lebar sidebar saat terbuka (sama dengan style.css) */
+  --tb-rail-w: 78px;           /* lebar sidebar saat hanya menampilkan ikon */
+  --tb-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --tb-sidebar-duration: 320ms;
+}
+
+html.tb-sidebar-collapsed {
+  --tb-sidebar-w: var(--tb-rail-w);
+}
+
+/* Skala kanvas 1440×1024 sudah diketahui sejak <head>, jadi halaman tidak
+   "melompat" ukuran sebelum script halaman berjalan. Inline style tetap menang. */
+.desktop-canvas.auto-scale:not(.fluid-desktop) {
+  transform: scale(var(--tb-scale, 1));
+}
+
+/* Mode "Fluid Desktop" pada Home, My Learning, Reflection, Discussion:
+   kanvas mengikuti ukuran layar (sama seperti yang dilakukan app.js di AI Assistant). */
+.desktop-canvas.fluid-desktop {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Mode fluid yang tersimpan diterapkan sejak awal pemuatan halaman (class dipasang oleh sidebar.js),
+   sehingga tidak ada lompatan dari 1440 × 1024 ke fluid. Class dilepas setelah status halaman sinkron. */
+html.tb-fluid .desktop-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  transform: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. TOMBOL TOGGLE
+   Melayang di celah antara sidebar dan konten, sehingga struktur sidebar
+   tidak berubah.
+   -------------------------------------------------------------------------- */
+.tb-sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--tb-sidebar-w) - 3px);   /* tengah celah 18px, tombol 24px */
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--color-electric-blue);
+  box-shadow: 0 4px 12px rgba(79, 139, 255, 0.22);
+  cursor: pointer;
+  z-index: 30;
+}
+
+.tb-sidebar-toggle svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.tb-sidebar-toggle:hover {
+  background: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(79, 139, 255, 0.32);
+  transform: scale(1.1);
+}
+
+.tb-sidebar-toggle:active { transform: scale(0.94); }
+
+.tb-sidebar-toggle:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 2px;
+}
+
+html.tb-sidebar-collapsed .tb-sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   2. GRID: kolom pertama menyusut ke lebar rail, kolom konten ikut melebar
+   Setiap bentuk grid yang dipakai di halaman-halaman diberi padanan, dengan
+   jenis track yang sama supaya perubahan lebarnya bisa dianimasikan.
+   -------------------------------------------------------------------------- */
+@media (min-width: 821px) {
+
+  /* AI Assistant & halaman 3 kolom (ada panel konteks di kanan) */
+  html.tb-sidebar-collapsed .workspace-body {
+    grid-template-columns: var(--tb-rail-w) 1fr 336px;
+  }
+
+  /* Halaman 2 kolom: Home, My Learning, Reflection, Discussion, Projects */
+  html.tb-sidebar-collapsed .workspace-body.hm-body,
+  html.tb-sidebar-collapsed .workspace-body.ml-body,
+  html.tb-sidebar-collapsed .workspace-body.rf-body,
+  html.tb-sidebar-collapsed .workspace-body.discussion-body,
+  html.tb-sidebar-collapsed .workspace-body.projects-mode,
+  html.tb-sidebar-collapsed .workspace-body.tb-single-view-mode,
+  html.tb-sidebar-collapsed #workspaceBody.tb-single-view-mode {
+    grid-template-columns: var(--tb-rail-w) minmax(0, 1fr) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. ISI SIDEBAR SAAT MODE RAIL
+   Hanya ikon yang tampak. Posisi ikon dipertahankan sama (selisih 1–2px)
+   sehingga tidak ada lompatan saat sidebar menyempit.
+   -------------------------------------------------------------------------- */
+
+/* Teks tidak boleh turun baris ketika lebar sidebar sedang beranimasi */
+html.tb-sidebar-ready .sidebar .nav-link > span,
+html.tb-sidebar-ready .sidebar .help-link > span,
+html.tb-sidebar-ready .sidebar .student-meta {
+  white-space: nowrap;
+  transition: opacity 180ms ease;
+}
+
+html.tb-sidebar-ready .sidebar .nav-link,
+html.tb-sidebar-ready .sidebar .help-link,
+html.tb-sidebar-ready .sidebar .student-card {
+  overflow: hidden;           /* label yang melebihi lebar rail terpotong rapi */
+}
+
+/* Ikon, avatar, dan tombol tidak boleh ikut menyusut ketika sidebar menyempit */
+html.tb-sidebar-ready .sidebar .nav-link .nav-icon,
+html.tb-sidebar-ready .sidebar .help-link svg,
+html.tb-sidebar-ready .sidebar .student-card-left,
+html.tb-sidebar-ready .sidebar .student-card .avatar-circle,
+html.tb-sidebar-ready .sidebar .settings-btn {
+  flex-shrink: 0;
+}
+
+/* Label memudar */
+html.tb-sidebar-collapsed .sidebar .nav-link > span,
+html.tb-sidebar-collapsed .sidebar .help-link > span,
+html.tb-sidebar-collapsed .sidebar .student-meta {
+  opacity: 0;
+}
+
+/* Menu utama: ikon berada di tengah rail (48px dalam − 20px ikon = 14px kiri/kanan) */
+html.tb-sidebar-collapsed .sidebar .nav-link {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+html.tb-sidebar-collapsed .sidebar .nav-link:hover {
+  transform: none;            /* geser 3px tidak cocok untuk rail */
+}
+
+/* Help & Resources (ikon 18px) */
+html.tb-sidebar-collapsed .sidebar .help-link {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Kartu mahasiswa: hanya avatar */
+html.tb-sidebar-collapsed .sidebar .student-card {
+  padding-left: 6px;
+  padding-right: 6px;
+  justify-content: flex-start;
+}
+
+html.tb-sidebar-collapsed .sidebar .settings-btn {
+  opacity: 0;
+  visibility: hidden;         /* tidak bisa difokus saat tersembunyi */
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. ANIMASI BUKA / TUTUP
+   Baru aktif setelah halaman siap (.tb-sidebar-ready) agar state yang
+   tersimpan tidak beranimasi saat halaman pertama kali dimuat.
+   -------------------------------------------------------------------------- */
+html.tb-sidebar-ready .workspace-body {
+  transition: grid-template-columns var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+html.tb-sidebar-ready .sidebar .nav-link,
+html.tb-sidebar-ready .sidebar .help-link {
+  transition:
+    all var(--transition-fast),
+    padding var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+html.tb-sidebar-ready .sidebar .student-card {
+  transition: padding var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+html.tb-sidebar-ready .sidebar .settings-btn {
+  transition:
+    opacity 160ms ease,
+    background var(--transition-fast),
+    color var(--transition-fast),
+    visibility 0s linear 0s;
+}
+
+html.tb-sidebar-ready.tb-sidebar-collapsed .sidebar .settings-btn {
+  transition:
+    opacity 160ms ease,
+    visibility 0s linear 160ms;
+}
+
+html.tb-sidebar-ready .tb-sidebar-toggle {
+  transition:
+    left var(--tb-sidebar-duration) var(--tb-ease),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+html.tb-sidebar-ready .tb-sidebar-toggle svg {
+  transition: transform var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+/* --------------------------------------------------------------------------
+   5. TRANSISI HALAMAN
+   Hanya area konten (anak .workspace-body selain sidebar) yang beranimasi,
+   jadi header dan sidebar terasa tetap diam saat berpindah halaman.
+   -------------------------------------------------------------------------- */
+@keyframes tbPageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+html.tb-enter .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) {
+  animation: tbPageIn 340ms cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+html.tb-leaving .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   6. LAYAR SEMPIT & PREFERENSI AKSESIBILITAS
+   -------------------------------------------------------------------------- */
+/* style.css menyembunyikan sidebar pada layar sempit, tombolnya ikut disembunyikan */
+@media (max-width: 820px) {
+  .tb-sidebar-toggle { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.tb-enter .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) { animation: none; }
+  html.tb-leaving .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) { transition: none; }
+  html.tb-sidebar-ready .workspace-body,
+  html.tb-sidebar-ready .sidebar .nav-link,
+  html.tb-sidebar-ready .sidebar .help-link,
+  html.tb-sidebar-ready .sidebar .student-card,
+  html.tb-sidebar-ready .sidebar .settings-btn,
+  html.tb-sidebar-ready .sidebar .nav-link > span,
+  html.tb-sidebar-ready .sidebar .help-link > span,
+  html.tb-sidebar-ready .sidebar .student-meta,
+  html.tb-sidebar-ready .tb-sidebar-toggle,
+  html.tb-sidebar-ready .tb-sidebar-toggle svg { transition: none; }
+}

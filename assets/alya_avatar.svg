@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E2EEFF" />
+      <stop offset="100%" stop-color="#C5DEFE" />
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="15" y1="55" x2="65" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F8BFF" />
+      <stop offset="100%" stop-color="#2E3A59" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="40" cy="40" r="40" fill="url(#bgGrad)" />
+
+  <!-- Shoulders & Clothes -->
+  <path d="M12 76 C 14 62 26 56 40 56 C 54 56 66 62 68 76 Z" fill="url(#shirtGrad)" />
+  <!-- White Inner Collar -->
+  <path d="M33 56 L40 65 L47 56 Z" fill="#FFFFFF" />
+
+  <!-- Neck -->
+  <rect x="35" y="44" width="10" height="14" rx="5" fill="#F8C3A0" />
+
+  <!-- Hair Back -->
+  <path d="M22 36 C 20 52 24 64 26 68 C 28 69 32 64 30 52 Z" fill="#2C2329" />
+  <path d="M58 36 C 60 52 56 64 54 68 C 52 69 48 64 50 52 Z" fill="#2C2329" />
+
+  <!-- Head Base -->
+  <ellipse cx="40" cy="38" rx="16" ry="18" fill="#FFD5BC" />
+
+  <!-- Hair Top & Bangs -->
+  <path d="M22 36 C 22 20 32 14 40 14 C 48 14 58 20 58 36 C 54 26 48 24 40 25 C 32 26 26 28 22 36 Z" fill="#2C2329" />
+  <path d="M22 32 C 28 32 35 34 38 38 C 34 37 28 36 24 38 Z" fill="#3B3037" />
+
+  <!-- Eyes -->
+  <ellipse cx="34" cy="38" rx="2.2" ry="2.8" fill="#2A1E22" />
+  <circle cx="34.6" cy="37.2" r="0.9" fill="#FFFFFF" />
+
+  <!-- Eyebrows -->
+  <path d="M31 33 Q 34 31.5 37 33" stroke="#2A1E22" stroke-width="1.2" stroke-linecap="round" fill="none" />
+  <path d="M43 33 Q 46 31.5 49 33" stroke="#2A1E22" stroke-width="1.2" stroke-linecap="round" fill="none" />
+
+  <ellipse cx="46" cy="38" rx="2.2" ry="2.8" fill="#2A1E22" />
+  <circle cx="46.6" cy="37.2" r="0.9" fill="#FFFFFF" />
+
+  <!-- Friendly Smile & Cheeks -->
+  <ellipse cx="32" cy="42" rx="2.5" ry="1.2" fill="#FFA69E" opacity="0.6" />
+  <ellipse cx="48" cy="42" rx="2.5" ry="1.2" fill="#FFA69E" opacity="0.6" />
+  <path d="M37 43 Q 40 46 43 43" stroke="#B85D52" stroke-width="1.3" stroke-linecap="round" fill="none" />
+</svg>

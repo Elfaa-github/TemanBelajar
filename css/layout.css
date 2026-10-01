@@ -1,0 +1,180 @@
+/* ==========================================================================
+   LAYOUT & NAVIGATION — additive stylesheet
+   1) Transisi halaman yang halus (sidebar & header tetap diam, konten bergeser lembut)
+   2) Sidebar dapat ditutup / dibuka; layout kanan menyesuaikan lebar otomatis
+   Tidak mengubah aturan di style.css; hanya menambah class berawalan "tb-".
+   ========================================================================== */
+
+:root {
+  --tb-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --tb-sidebar-duration: 320ms;
+}
+
+/* --------------------------------------------------------------------------
+   1. TRANSISI HALAMAN
+   Hanya area konten (anak .workspace-body selain sidebar) yang beranimasi.
+   Class .tb-enter dipasang sementara saat halaman dibuka, jadi perpindahan
+   view di dalam halaman (mis. AI Assistant ↔ Projects) tidak terpengaruh.
+   -------------------------------------------------------------------------- */
+@keyframes tbPageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+html.tb-enter .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) {
+  animation: tbPageIn 340ms cubic-bezier(0.22, 0.8, 0.3, 1) backwards;
+}
+
+html.tb-leaving .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. TOMBOL TOGGLE SIDEBAR
+   Melayang di tepi sidebar sehingga struktur & ukuran sidebar tidak berubah.
+   -------------------------------------------------------------------------- */
+.tb-sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  left: 233px;               /* 236px sidebar + 9px (setengah gap) - 12px (setengah tombol) */
+  width: 24px;
+  height: 24px;
+  margin-top: -12px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--color-electric-blue);
+  box-shadow: 0 4px 12px rgba(79, 139, 255, 0.22);
+  cursor: pointer;
+  z-index: 30;
+}
+
+.tb-sidebar-toggle svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.tb-sidebar-toggle:hover {
+  background: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(79, 139, 255, 0.32);
+  transform: scale(1.1);
+}
+
+.tb-sidebar-toggle:active { transform: scale(0.96); }
+
+.tb-sidebar-toggle:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. STATE SIDEBAR TERTUTUP
+   Kolom pertama grid menjadi 0 dan seluruh konten di kanan melebar.
+   !important dipakai karena style.css memakai !important pada mode Projects.
+   -------------------------------------------------------------------------- */
+html.tb-sidebar-collapsed .workspace-body {
+  margin-left: -18px;        /* menghapus gap 18px di depan kolom 0 */
+  grid-template-columns: 0px minmax(0, 1fr) !important;
+}
+
+/* Mode AI Assistant (ada panel konteks kanan) */
+html.tb-sidebar-collapsed .workspace-body:has(> .right-context-panel) {
+  grid-template-columns: 0px 1fr 336px !important;
+}
+
+/* Mode Projects menyembunyikan panel kanan, jadi tetap dua kolom */
+html.tb-sidebar-collapsed .workspace-body.projects-mode {
+  grid-template-columns: 0px minmax(0, 1fr) !important;
+}
+
+html.tb-sidebar-collapsed .workspace-body > .sidebar {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-12px);
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-width: 0;
+}
+
+html.tb-sidebar-collapsed .workspace-body > .sidebar * {
+  white-space: nowrap;       /* cegah teks menumpuk saat sidebar menyempit */
+}
+
+html.tb-sidebar-collapsed .tb-sidebar-toggle {
+  left: 0;
+}
+
+html.tb-sidebar-collapsed .tb-sidebar-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   4. ANIMASI BUKA / TUTUP
+   Baru aktif setelah halaman siap (.tb-sidebar-ready) agar state yang
+   tersimpan tidak beranimasi saat halaman pertama kali dimuat.
+   -------------------------------------------------------------------------- */
+html.tb-sidebar-ready .workspace-body {
+  transition:
+    grid-template-columns var(--tb-sidebar-duration) var(--tb-ease),
+    margin-left var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+html.tb-sidebar-ready .workspace-body > .sidebar {
+  transition:
+    opacity 220ms ease,
+    transform var(--tb-sidebar-duration) var(--tb-ease),
+    padding var(--tb-sidebar-duration) var(--tb-ease),
+    border-width var(--tb-sidebar-duration) var(--tb-ease),
+    visibility 0s linear 0s;
+}
+
+html.tb-sidebar-ready.tb-sidebar-collapsed .workspace-body > .sidebar {
+  transition:
+    opacity 220ms ease,
+    transform var(--tb-sidebar-duration) var(--tb-ease),
+    padding var(--tb-sidebar-duration) var(--tb-ease),
+    border-width var(--tb-sidebar-duration) var(--tb-ease),
+    visibility 0s linear var(--tb-sidebar-duration);
+}
+
+html.tb-sidebar-ready .tb-sidebar-toggle {
+  transition:
+    left var(--tb-sidebar-duration) var(--tb-ease),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+html.tb-sidebar-ready .tb-sidebar-toggle svg {
+  transition: transform var(--tb-sidebar-duration) var(--tb-ease);
+}
+
+/* Sidebar sudah disembunyikan oleh style.css pada layar sempit */
+@media (max-width: 820px) {
+  .tb-sidebar-toggle { display: none; }
+
+  html.tb-sidebar-collapsed .workspace-body {
+    margin-left: 0;
+  }
+}
+
+/* Hormati preferensi pengguna: tanpa animasi */
+@media (prefers-reduced-motion: reduce) {
+  html.tb-enter .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) { animation: none; }
+  html.tb-leaving .workspace-body > :not(.sidebar):not(.tb-sidebar-toggle) { transition: none; }
+  html.tb-sidebar-ready .workspace-body,
+  html.tb-sidebar-ready .workspace-body > .sidebar,
+  html.tb-sidebar-ready .tb-sidebar-toggle,
+  html.tb-sidebar-ready .tb-sidebar-toggle svg { transition: none; }
+}

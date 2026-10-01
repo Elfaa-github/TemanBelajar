@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TemanBelajar — AI Learning Workspace</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Sidebar yang dapat diciutkan + navigasi halus -->
+  <link rel="stylesheet" href="css/sidebar.css">
+  <script src="js/sidebar.js"></script>
+</head>
+
+<body>
+  <!-- Ambient Background -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+
+  <!-- SVG Definitions -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true">
+    <defs>
+      <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#4F8BFF"></stop>
+        <stop offset="100%" stop-color="#6EE1FF"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="app-viewport">
+    <main class="desktop-canvas auto-scale" id="desktopCanvas">
+
+      <!-- Top Header -->
+      <header class="top-header">
+        <a href="#home" class="brand-group">
+          <div class="brand-logo-wrap">
+            <img src="assets/logo.svg" alt="TemanBelajar Logo">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">TemanBelajar</span>
+            <span class="brand-tagline">Belajar bersama AI, tetap berpikir sendiri.</span>
+          </div>
+        </a>
+
+        <div class="search-container">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="search-input" placeholder="Cari materi, topik, atau pertanyaan..."
+              aria-label="Cari materi">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" title="Notifikasi" aria-label="Notifikasi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge"></span>
+          </button>
+
+          <div class="user-profile-pill" title="Profil Mahasiswa">
+            <div class="avatar-circle">
+              <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+            </div>
+            <div class="user-info">
+              <span class="user-name">Alya Rahma</span>
+              <span class="user-status"><span class="status-dot"></span>Online</span>
+            </div>
+            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Workspace -->
+      <div class="workspace-body" id="workspaceBody">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <nav aria-label="Navigasi Utama">
+            <ul class="nav-menu-list">
+              <li class="nav-item">
+                <a href="#home" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                  <span>Home</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#my-learning" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  </svg>
+                  <span>My Learning</span>
+                </a>
+              </li>
+
+              <li class="nav-item active">
+                <a href="#ai-assistant" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                  </svg>
+                  <span>AI Assistant</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#projects" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Projects</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#discussion" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>Discussion</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#reflection" class="nav-link">
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                  <span>Reflection</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="sidebar-bottom">
+            <a href="#help" class="help-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Help & Resources</span>
+            </a>
+
+            <div class="student-card">
+              <div class="student-card-left">
+                <div class="avatar-circle">
+                  <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+                </div>
+                <div class="student-meta">
+                  <span class="student-name">Alya Rahma</span>
+                  <span class="student-major">IT Student · UGM</span>
+                </div>
+              </div>
+
+              <button class="settings-btn" type="button" title="Pengaturan" aria-label="Pengaturan">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-.33-1.82V15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                  </path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Projects / Work Area Workspace -->
+        <section class="main-workspace project-page-view" id="projects" hidden>
+          <div class="workspace-header">
+            <div class="header-spark-icon project-header-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="workspace-titles">
+              <h1 class="workspace-main-title">Projects</h1>
+              <p class="workspace-subheading">Pilih masalah atau proyek untuk menerapkan apa yang kamu pelajari.</p>
+            </div>
+          </div>
+
+          <!-- Project Selection -->
+          <div class="project-view" id="projectSelectionView">
+            <div class="project-overview-card glass-panel">
+              <div>
+                <span class="eyebrow-label">Mulai dari sebuah masalah</span>
+                <h2 class="project-overview-title">Terapkan pemahamanmu melalui proyek.</h2>
+                <p class="project-overview-text">Pilih proyek yang sesuai dengan tujuan belajar. AI membantu memahami masalah dan memberi arahan, sementara solusi tetap kamu kembangkan sendiri.</p>
+              </div>
+              <div class="current-goal-chip">
+                <span class="goal-chip-label">Tujuan Belajar</span>
+                <strong>Web Development Fundamentals</strong>
+              </div>
+            </div>
+
+            <div class="project-section-heading">
+              <div>
+                <h2>Pilih Proyek</h2>
+                <p>Gunakan proyek untuk menerapkan konsep yang sudah dipelajari.</p>
+              </div>
+            </div>
+
+            <div class="project-card-grid">
+              <article class="project-card glass-panel selected-project-card">
+                <div class="project-card-icon">🌐</div>
+                <span class="project-card-status">Direkomendasikan</span>
+                <h3>Website Profil Sederhana</h3>
+                <p>Buat halaman profil sederhana untuk menerapkan struktur HTML, CSS, dan dasar desain antarmuka.</p>
+                <div class="project-card-meta">
+                  <span>4 langkah</span>
+                  <span>Web Development</span>
+                </div>
+                <button class="primary-action project-start-btn" type="button" data-project="Website Profil Sederhana">
+                  Mulai Proyek
+                  <span aria-hidden="true">→</span>
+                </button>
+              </article>
+
+              <article class="project-card glass-panel">
+                <div class="project-card-icon">📊</div>
+                <span class="project-card-status neutral">Latihan</span>
+                <h3>Dashboard Informasi Mahasiswa</h3>
+                <p>Rancang dashboard sederhana yang menyajikan informasi mahasiswa secara terstruktur dan mudah dipahami.</p>
+                <div class="project-card-meta">
+                  <span>4 langkah</span>
+                  <span>UI & Data</span>
+                </div>
+                <button class="secondary-action project-start-btn" type="button" data-project="Dashboard Informasi Mahasiswa">
+                  Lihat Proyek
+                  <span aria-hidden="true">→</span>
+                </button>
+              </article>
+
+              <article class="project-card glass-panel">
+                <div class="project-card-icon">🔎</div>
+                <span class="project-card-status neutral">Latihan</span>
+                <h3>Analisis Data Sederhana</h3>
+                <p>Gunakan data sederhana untuk menemukan pola, menjelaskan hasil, dan menyusun kesimpulan.</p>
+                <div class="project-card-meta">
+                  <span>4 langkah</span>
+                  <span>Data Analysis</span>
+                </div>
+                <button class="secondary-action project-start-btn" type="button" data-project="Analisis Data Sederhana">
+                  Lihat Proyek
+                  <span aria-hidden="true">→</span>
+                </button>
+              </article>
+            </div>
+          </div>
+
+          <!-- Work Area -->
+          <div class="work-area-view" id="workAreaView" hidden>
+            <div class="work-area-topbar glass-panel">
+              <button class="back-to-projects-btn" id="backToProjectsBtn" type="button">← Kembali ke Projects</button>
+              <div class="work-project-info">
+                <span class="eyebrow-label">Work Area</span>
+                <h2 id="workProjectTitle">Website Profil Sederhana</h2>
+                <p>Kembangkan solusi berdasarkan pemahaman dan proses yang sudah kamu lakukan.</p>
+              </div>
+              <div class="work-step-pill">Langkah 2 dari 4</div>
+            </div>
+
+            <div class="work-area-layout">
+              <div class="work-editor-card glass-panel">
+                <div class="work-card-header">
+                  <div>
+                    <span class="student-ownership-label">Pekerjaanmu</span>
+                    <h3>Bangun solusi</h3>
+                  </div>
+                  <span class="status-pill">In Progress</span>
+                </div>
+
+                <div class="work-tabs" role="tablist" aria-label="Area kerja">
+                  <button class="work-tab active" type="button">Code</button>
+                  <button class="work-tab" type="button">Preview</button>
+                  <button class="work-tab" type="button">Notes</button>
+                </div>
+
+                <div class="work-canvas">
+                  <div class="code-placeholder">
+                    <span class="code-line muted">&lt;!-- Kembangkan solusi di sini --&gt;</span>
+                    <span class="code-line">&lt;section class="profile"&gt;</span>
+                    <span class="code-line indent">&lt;h1&gt;Profil Saya&lt;/h1&gt;</span>
+                    <span class="code-line indent">&lt;p&gt;Tuliskan informasi yang ingin kamu tampilkan.&lt;/p&gt;</span>
+                    <span class="code-line">&lt;/section&gt;</span>
+                  </div>
+                </div>
+
+                <div class="work-actions">
+                  <button class="secondary-action" type="button">Simpan Draft</button>
+                  <button class="secondary-action" type="button">Request Feedback</button>
+                  <button class="primary-action" type="button">Lanjutkan →</button>
+                </div>
+              </div>
+
+              <aside class="work-support-column">
+                <div class="ai-context-card glass-panel">
+                  <div class="support-heading">
+                    <img src="assets/logo.svg" alt="TemanBelajar AI">
+                    <div>
+                      <span>TemanBelajar AI</span>
+                      <small>Teman berpikir</small>
+                    </div>
+                  </div>
+                  <p>Gunakan AI untuk memahami masalah dan meninjau pekerjaanmu. AI tidak mengerjakan proyek untukmu.</p>
+                  <div class="ai-support-actions">
+                    <button type="button">Jelaskan masalah</button>
+                    <button type="button">Beri petunjuk</button>
+                    <button type="button">Tinjau pekerjaanku</button>
+                    <button type="button">Ajukan pertanyaan</button>
+                  </div>
+                </div>
+
+                <div class="feedback-card glass-panel">
+                  <div class="support-heading compact">
+                    <span class="feedback-symbol">✓</span>
+                    <div>
+                      <span>Feedback</span>
+                      <small>Tanpa nilai angka</small>
+                    </div>
+                  </div>
+                  <div class="feedback-item">
+                    <strong>Yang sudah berjalan</strong>
+                    <p>Struktur awal sudah mengarah pada solusi yang dapat dikembangkan.</p>
+                  </div>
+                  <div class="feedback-item">
+                    <strong>Yang dapat diperbaiki</strong>
+                    <p>Pertimbangkan bagaimana informasi profil akan disusun agar mudah dibaca.</p>
+                  </div>
+                  <div class="feedback-item question">
+                    <strong>Pertanyaan pengarah</strong>
+                    <p>Bagian mana yang perlu kamu tentukan sebelum menambahkan elemen berikutnya?</p>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main AI Workspace -->
+        <section class="main-workspace" id="ai-assistant">
+          <div class="workspace-header">
+            <div class="header-spark-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path
+                  d="M12 3v3m0 12v3m9-9h-3M6 12H3m15.364-6.364l-2.121 2.121M8.757 15.243l-2.121 2.121m12.728 0l-2.121-2.121M8.757 8.757L6.636 6.636">
+                </path>
+              </svg>
+            </div>
+            <div class="workspace-titles">
+              <h1 class="workspace-main-title">AI Assistant</h1>
+              <p class="workspace-subheading">Teman belajar untuk memahami, mengeksplorasi, dan memperbaiki pemahaman.
+              </p>
+            </div>
+          </div>
+
+          <div class="ai-assistant-card">
+            <!-- AI Companion Header -->
+            <div class="ai-companion-banner">
+              <div class="banner-ambient-glow"></div>
+
+              <div class="ai-companion-info">
+                <div class="mascot-avatar-container" id="mascotAvatarContainer">
+                  <div id="mascotBannerAvatar"></div>
+                </div>
+
+                <div class="ai-meta">
+                  <h2 class="ai-companion-name">TemanBelajar AI</h2>
+                  <div class="ai-companion-status">
+                    <span class="status-dot"></span>
+                    <span>Teman belajar · Online</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="banner-controls">
+                <button class="dropdown-pill" id="conversationDropdownBtn" type="button" title="Opsi Percakapan">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>Percakapan</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+
+                <button class="mini-control-btn" type="button" title="Minimize" aria-label="Minimize">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+
+                <button class="mini-control-btn" type="button" title="Fullscreen" aria-label="Fullscreen">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path
+                      d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Conversation -->
+            <div class="conversation-scroll-area" id="conversationScrollArea">
+              <div id="chatMessagesList" style="display:flex;flex-direction:column;gap:18px;">
+
+                <!-- Student Message -->
+                <div class="message-row student-row">
+                  <div class="student-bubble-wrap">
+                    <div class="student-bubble">Aku masih bingung kenapa 2NF diperlukan dalam database.</div>
+                    <span class="message-time">10:24</span>
+                  </div>
+                  <div class="avatar-circle student-avatar-small">
+                    <img src="assets/alya_avatar.svg" alt="Alya Rahma">
+                  </div>
+                </div>
+
+                <!-- AI Response -->
+                <div class="message-row ai-row">
+                  <div class="ai-avatar-small-wrap" id="mascotChatAvatar">
+                    <img src="assets/logo.svg" alt="AI Avatar" style="width:24px;height:24px;">
+                  </div>
+
+                  <div class="ai-response-card">
+                    <div class="ai-response-header">
+                      <div class="ai-sender-info">
+                        <span class="ai-sender-name">TemanBelajar AI</span>
+                        <span class="guided-badge">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polygon
+                              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                          </svg>
+                          Penjelasan terarah
+                        </span>
+                      </div>
+                      <span class="message-time">10:25</span>
+                    </div>
+
+                    <div class="ai-explanation-block">
+                      <p class="explanation-text">
+                        2NF diperlukan agar setiap atribut non-key bergantung penuh pada <strong>primary key, bukan
+                          hanya sebagian</strong>. Jika tabel belum dalam 2NF, dapat terjadi <strong>partial
+                          dependency</strong> yang menyebabkan redundansi data dan berpotensi menimbulkan inkonsistensi.
+                      </p>
+                    </div>
+
+                    <div class="subcard subcard-cyan">
+                      <div class="subcard-title-row">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                          stroke-width="2.5">
+                          <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                          </path>
+                        </svg>
+                        <span>Contoh sederhana</span>
+                      </div>
+                      <p class="subcard-content">
+                        Pada tabel dengan composite key, misalnya <code>(NIM, KodeMataKuliah)</code>, atribut seperti
+                        <code>NamaMataKuliah</code> harus bergantung pada seluruh key, bukan hanya
+                        <code>KodeMataKuliah</code>.
+                      </p>
+                    </div>
+
+                    <div class="subcard subcard-violet">
+                      <div class="subcard-title-row">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                          stroke-width="2.5">
+                          <path d="M9 18h6"></path>
+                          <path d="M10 22h4"></path>
+                          <path d="M15 2a6 6 0 0 0-6 6c0 2 1 3.5 1 5.5h6c0-2-1-3.5-1-5.5a6 6 0 0 0-2-6z"></path>
+                        </svg>
+                        <span>Pertanyaan pemantik</span>
+                      </div>
+                      <p class="subcard-content">
+                        Jika sebuah tabel memiliki composite key, apakah setiap atribut non-key bergantung pada seluruh
+                        key?
+                      </p>
+                    </div>
+
+                    <div class="guiding-actions-row">
+                      <button class="action-chip-btn" id="btnGiveHint" type="button">
+                        <span>Beri petunjuk</span>
+                      </button>
+                      <button class="action-chip-btn" id="btnShowExample" type="button">
+                        <span>Lihat contoh</span>
+                      </button>
+                      <button class="action-chip-btn" id="btnCheckUnderstanding" type="button">
+                        <span>Cek pemahaman</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Student Thinking -->
+              <section class="student-thinking-section" id="studentThinkingSection">
+                <div class="thinking-header">
+                  <div class="thinking-titles">
+                    <div class="thinking-title-row">
+                      <svg class="pencil-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                      </svg>
+                      <span>Pemahamanmu</span>
+                      <span class="thinking-badge">Proses Berpikir</span>
+                    </div>
+                    <span class="thinking-subtitle">Tulis pemahamanmu sebelum melihat umpan balik.</span>
+                  </div>
+                </div>
+
+                <div class="thinking-textarea-wrap">
+                  <textarea class="thinking-textarea" id="studentThinkingTextarea"
+                    placeholder="Jelaskan konsep ini dengan bahasamu sendiri..."></textarea>
+                </div>
+
+                <div class="quick-starters-row">
+                  <span class="quick-starter-label">Bantuan ide awal:</span>
+                  <button type="button" class="starter-chip"
+                    data-text="Menurut pemahamanku, 2NF mewajibkan setiap kolom non-key bergantung penuh pada composite key...">Menurut
+                    pemahamanku...</button>
+                  <button type="button" class="starter-chip"
+                    data-text="Jika ada atribut yang hanya bergantung pada salah satu primary key, terjadi partial dependency yang...">Jika
+                    ada atribut parsial...</button>
+                  <button type="button" class="starter-chip"
+                    data-text="Solusinya adalah memecah tabel menjadi relasi terpisah agar tidak redundan...">Solusi
+                    pemecahan tabel...</button>
+                </div>
+
+                <div class="thinking-actions">
+                  <span class="char-counter" id="charCounter">0 karakter</span>
+                  <button class="btn-primary" id="submitThinkingBtn" type="button" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Kirim untuk Umpan Balik</span>
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <!-- Chat Input -->
+            <footer class="chat-input-bar">
+              <div class="input-pill-wrapper">
+                <button class="attach-btn" type="button" title="Lampirkan Dokumen/ERD" aria-label="Lampirkan Dokumen">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48">
+                    </path>
+                  </svg>
+                </button>
+                <input type="text" class="chat-input-field" id="chatInputField" placeholder="Tulis pesanmu di sini..."
+                  aria-label="Tulis pesan">
+                <button class="send-btn" id="sendChatBtn" type="button" title="Kirim Pesan" aria-label="Kirim Pesan">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </footer>
+          </div>
+        </section>
+
+        <!-- Right Context Panel -->
+        <aside class="right-context-panel">
+
+          <!-- Learning Progress -->
+          <div class="context-card progress-card">
+            <div class="context-card-header">
+              <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M18 20V10M12 20V4M6 20v-6"></path>
+                </svg>
+              </div>
+              <h3 class="context-card-title">Progress Belajar</h3>
+            </div>
+
+            <div class="progress-visual-row">
+              <div class="progress-donut-wrap">
+                <svg class="progress-donut-svg" viewBox="0 0 86 86" aria-hidden="true">
+                  <circle class="donut-bg" cx="43" cy="43" r="34"></circle>
+                  <circle class="donut-fill" id="donutProgressCircle" cx="43" cy="43" r="34"></circle>
+                </svg>
+
+                <div class="donut-center-text">
+                  <span class="donut-number" id="donutNumber">2 / 4</span>
+                  <span class="donut-label" id="donutLabel">konsep dipelajari</span>
+                </div>
+              </div>
+
+              <div class="context-meta-list">
+                <div class="context-meta-item">
+                  <svg class="meta-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="6"></circle>
+                    <circle cx="12" cy="12" r="2"></circle>
+                  </svg>
+                  <div class="meta-item-content">
+                    <span class="meta-label">Tujuan Belajar</span>
+                    <span class="meta-value" id="currentGoalText">Memahami Normalisasi Database</span>
+                  </div>
+                </div>
+
+                <div class="context-meta-item">
+                  <svg class="meta-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <div class="meta-item-content">
+                    <span class="meta-label">Aktivitas Saat Ini</span>
+                    <span class="meta-value" id="currentActivityText">Jelaskan 2NF dengan bahasamu sendiri</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="progress-stats-footer">
+              <div class="stat-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <div class="stat-info">
+                  <span class="stat-title">Interaksi</span>
+                  <span class="stat-val" id="aiUsageStat">3 interaksi</span>
+                </div>
+              </div>
+
+              <div class="stat-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="stat-info">
+                  <span class="stat-title">Refleksi</span>
+                  <span class="stat-val" id="reflectionStat">Belum selesai</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Reflection -->
+          <div class="context-card">
+            <div class="context-card-header">
+              <div class="card-header-icon" style="background:rgba(123,97,255,0.15);color:#7B61FF;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="context-card-title">Refleksi Singkat</h3>
+            </div>
+
+            <p class="reflection-prompt">Apa yang lebih kamu pahami setelah belajar bersama?</p>
+
+            <textarea class="reflection-textarea" id="reflectionTextarea" placeholder="Tulis refleksimu..."></textarea>
+
+            <div id="reflectionStatusWrap"></div>
+
+            <button class="btn-save-reflection" id="saveReflectionBtn" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              <span>Simpan Refleksi</span>
+            </button>
+          </div>
+
+          <!-- Inspirational Widget -->
+          <div class="inspirational-widget">
+            <div class="inspirational-text">“Langkah kecil hari ini, untuk versi terbaikmu nanti.”</div>
+            <div class="inspirational-img-wrap">
+              <img src="assets/illustration.svg" alt="Botanical Plant Sprout and Books">
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Canvas View Controls -->
+      <aside class="canvas-view-controls" aria-label="Pengaturan Tampilan Layar">
+        <span>Desktop Canvas 1440 × 1024</span>
+        <button type="button" class="view-mode-pill" id="viewModeToggleBtn">View: 1440 × 1024 Canvas</button>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Judul Modal</h3>
+        <button class="modal-close-btn" id="modalCloseBtn" type="button" aria-label="Tutup Modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">Konten panduan...</div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/mascot.js"></script>
+  <script src="js/learning-data.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    (function () {
+      const aiView = document.getElementById('ai-assistant');
+      const projectsView = document.getElementById('projects');
+      const projectSelectionView = document.getElementById('projectSelectionView');
+      const workAreaView = document.getElementById('workAreaView');
+      const workProjectTitle = document.getElementById('workProjectTitle');
+      const backToProjectsBtn = document.getElementById('backToProjectsBtn');
+      const navItems = document.querySelectorAll('.nav-item');
+      const workspaceBody = document.getElementById('workspaceBody');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      function setActiveNav(target) {
+        navItems.forEach(item => item.classList.remove('active'));
+        const link = document.querySelector('.nav-link[href="' + target + '"]');
+        if (link) link.closest('.nav-item').classList.add('active');
+      }
+
+      function showView(view) {
+        const showProjects = view === 'projects';
+        aiView.hidden = showProjects;
+        projectsView.hidden = !showProjects;
+        workspaceBody.classList.toggle('projects-mode', showProjects);
+        setActiveNav(showProjects ? '#projects' : '#ai-assistant');
+      }
+
+      function showProjectsList() {
+        projectSelectionView.hidden = false;
+        workAreaView.hidden = true;
+        showView('projects');
+        history.replaceState(null, '', '#projects');
+      }
+
+      function showWorkArea(projectName) {
+        projectSelectionView.hidden = true;
+        workAreaView.hidden = false;
+        workProjectTitle.textContent = projectName;
+        showView('projects');
+        history.replaceState(null, '', '#projects');
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+          const target = this.getAttribute('href');
+          if (target === '#projects') {
+            event.preventDefault();
+            showProjectsList();
+          } else if (target === '#ai-assistant') {
+            event.preventDefault();
+            showView('ai-assistant');
+            history.replaceState(null, '', '#ai-assistant');
+          }
+        });
+      });
+
+      document.querySelectorAll('.project-start-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          showWorkArea(this.dataset.project || 'Website Profil Sederhana');
+        });
+      });
+
+      if (backToProjectsBtn) backToProjectsBtn.addEventListener('click', showProjectsList);
+
+      if (window.location.hash === '#projects') showProjectsList();
+      else showView('ai-assistant');
+    })();
+  </script>
+  <script src="js/discussion-nav.js"></script>
+  <script src="js/my-learning-nav.js"></script>
+  <script src="js/reflection-nav.js"></script>
+  <script src="js/home-nav.js"></script>
+</body>
+
+</html>
